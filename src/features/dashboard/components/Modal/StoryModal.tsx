@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MissionCard from "../../../MyMissions/pages/MissionCard";
 import LeaveCard from "../../../MyLeaves/pages/LeaveCard";
 import PerformanceCard from "../../../MyClocking/pages/PerformanceCard";
+import DiagramsPage from "../../../diagrams/pages/DiagramsPage";
 import { getMissions } from "../../../MyMissions/services/missionService";
 import { getLeaves } from "../../../MyLeaves/services/leaveService";
 import { getPerformance } from "../../../MyClocking/services/clockingService";
-import Chart from "react-apexcharts";
 import type { Leave } from "../../../MyLeaves/types";
 
 interface Tab {
@@ -126,125 +126,6 @@ export const StoryModal: React.FC<StoryModalProps> = ({
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
-
-  const chartsData = useMemo(() => {
-    // Mock example data – replace with real aggregated data if needed
-    const categories = [
-      "فروردین",
-      "اردیبهشت",
-      "خرداد",
-      "تیر",
-      "مرداد",
-      "شهریور",
-    ];
-
-    return {
-      bar: {
-        series: [{ name: "حضور", data: [40, 55, 57, 50, 49, 65] }],
-        options: {
-          chart: {
-            type: "bar",
-            toolbar: { show: false },
-            fontFamily: "inherit",
-          },
-          plotOptions: {
-            bar: { borderRadius: 6, columnWidth: "45%" },
-          },
-          dataLabels: { enabled: false },
-          xaxis: { categories },
-          colors: ["#1a3766"],
-          tooltip: { theme: "light" },
-        },
-      },
-      line: {
-        series: [{ name: "کارکرد", data: [8, 7.5, 8.2, 7.8, 8.4, 8.1] }],
-        options: {
-          chart: {
-            type: "line",
-            toolbar: { show: false },
-            fontFamily: "inherit",
-          },
-          stroke: { curve: "smooth", width: 4 },
-          dataLabels: { enabled: false },
-          xaxis: { categories: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور"] },
-          colors: ["#6ec6e7"],
-          markers: {
-            size: 5,
-            colors: ["#fff"],
-            strokeColors: "#6ec6e7",
-            strokeWidth: 3,
-          },
-        },
-      },
-      area: {
-        series: [{ name: "مرخصی", data: [2, 1, 3, 4, 2, 1] }],
-        options: {
-          chart: {
-            type: "area",
-            toolbar: { show: false },
-            fontFamily: "inherit",
-          },
-          dataLabels: { enabled: false },
-          stroke: { curve: "smooth", width: 3 },
-          fill: {
-            type: "gradient",
-            gradient: {
-              shadeIntensity: 1,
-              opacityFrom: 0.5,
-              opacityTo: 0.05,
-              stops: [0, 90, 100],
-            },
-          },
-          xaxis: { categories },
-          colors: ["#0d2b6b"],
-        },
-      },
-      pie: {
-        series: [44, 33, 12, 11],
-        options: {
-          chart: { type: "donut" },
-          labels: ["حضور", "ماموریت", "مرخصی", "غیبت"],
-          colors: ["#1a3766", "#6ec6e7", "#0d2b6b", "#bbbbbb"],
-          legend: { position: "bottom", fontFamily: "inherit" },
-          dataLabels: { dropShadow: { enabled: false } },
-        },
-      },
-      horizontal: {
-        series: [{ name: "تعداد", data: [15, 9, 22, 11] }],
-        options: {
-          chart: {
-            type: "bar",
-            toolbar: { show: false },
-            fontFamily: "inherit",
-          },
-          plotOptions: {
-            bar: {
-              horizontal: true,
-              borderRadius: 6,
-              barHeight: "55%",
-            },
-          },
-          dataLabels: { enabled: false },
-          xaxis: { categories: ["پروژه A", "پروژه B", "پروژه C", "پروژه D"] },
-          colors: ["#264785"],
-        },
-      },
-      radial: {
-        series: [76],
-        options: {
-          chart: { type: "radialBar", toolbar: { show: false } },
-          colors: ["#1a3766"],
-          plotOptions: {
-            radialBar: {
-              hollow: { size: "60%" },
-              dataLabels: { value: { fontSize: "20px" } },
-            },
-          },
-          labels: ["انجام شده"],
-        },
-      },
-    };
-  }, []);
 
   if (!isOpen) return null;
 
@@ -670,85 +551,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                       </div>
                     )}
                     {tabs[currentSlide].id === "charts" && (
-                      <div className="space-y-6">
-                        <h3 className="text-base sm:text-lg font-bold text-[#1a3766]">
-                          دیاگرام‌ها
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {/* Bar Chart */}
-                          <div className="p-3 rounded-xl bg-gradient-to-b from-white to-slate-50 border border-slate-100 shadow-sm">
-                            <h4 className="font-semibold mb-2 text-[#1a3766] text-xs sm:text-sm">
-                              نمودار ستونی
-                            </h4>
-                            <Chart
-                              options={chartsData.bar.options}
-                              series={chartsData.bar.series}
-                              type="bar"
-                              height={220}
-                            />
-                          </div>
-                          {/* Line Chart */}
-                          <div className="p-3 rounded-xl bg-gradient-to-b from-white to-slate-50 border border-slate-100 shadow-sm">
-                            <h4 className="font-semibold mb-2 text-[#1a3766] text-xs sm:text-sm">
-                              نمودار خطی
-                            </h4>
-                            <Chart
-                              options={chartsData.line.options}
-                              series={chartsData.line.series}
-                              type="line"
-                              height={220}
-                            />
-                          </div>
-                          {/* Area (Volume) Chart */}
-                          <div className="p-3 rounded-xl bg-gradient-to-b from-white to-slate-50 border border-slate-100 shadow-sm">
-                            <h4 className="font-semibold mb-2 text-[#1a3766] text-xs sm:text-sm">
-                              نمودار حجمی
-                            </h4>
-                            <Chart
-                              options={chartsData.area.options}
-                              series={chartsData.area.series}
-                              type="area"
-                              height={220}
-                            />
-                          </div>
-                          {/* Pie / Donut Chart */}
-                          <div className="p-3 rounded-xl bg-gradient-to-b from-white to-slate-50 border border-slate-100 shadow-sm">
-                            <h4 className="font-semibold mb-2 text-[#1a3766] text-xs sm:text-sm">
-                              سهم‌بندی
-                            </h4>
-                            <Chart
-                              options={chartsData.pie.options}
-                              series={chartsData.pie.series}
-                              type="donut"
-                              height={240}
-                            />
-                          </div>
-                          {/* Horizontal Bar */}
-                          <div className="p-3 rounded-xl bg-gradient-to-b from-white to-slate-50 border border-slate-100 shadow-sm">
-                            <h4 className="font-semibold mb-2 text-[#1a3766] text-xs sm:text-sm">
-                              نمودار افقی
-                            </h4>
-                            <Chart
-                              options={chartsData.horizontal.options}
-                              series={chartsData.horizontal.series}
-                              type="bar"
-                              height={220}
-                            />
-                          </div>
-                          {/* Radial Progress */}
-                          <div className="p-3 rounded-xl bg-gradient-to-b from-white to-slate-50 border border-slate-100 shadow-sm flex flex-col items-center justify-center">
-                            <h4 className="font-semibold mb-2 text-[#1a3766] text-xs sm:text-sm self-start">
-                              پیشرفت کلی
-                            </h4>
-                            <Chart
-                              options={chartsData.radial.options}
-                              series={chartsData.radial.series}
-                              type="radialBar"
-                              height={240}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      <DiagramsPage />
                     )}
                   </>
                 )}
