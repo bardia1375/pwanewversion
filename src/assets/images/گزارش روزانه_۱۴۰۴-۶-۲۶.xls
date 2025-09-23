@@ -1,0 +1,62 @@
+﻿
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+          <meta charset="UTF-8">
+          <!--[if gte mso 9]>
+          <xml>
+            <x:ExcelWorkbook>
+              <x:ExcelWorksheets>
+                <x:ExcelWorksheet>
+                  <x:Name>گزارش روزانه</x:Name>
+                  <x:WorksheetOptions>
+                    <x:DisplayRightToLeft/>
+                  </x:WorksheetOptions>
+                </x:ExcelWorksheet>
+              </x:ExcelWorksheets>
+            </x:ExcelWorkbook>
+          </xml>
+          <![endif]-->
+          <style>
+            table, td, th {
+              border: 1px solid #999999;
+              border-collapse: collapse;
+              font-family: Tahoma, Arial, sans-serif;
+            }
+            th {
+              background-color: #E6F7FF;
+              color: black;
+              font-weight: bold;
+              text-align: center;
+              padding: 5px;
+              height: 30px;
+            }
+            td {
+              padding: 5px;
+              text-align: center;
+              height: 25px;
+            }
+            tr:nth-child(even) {
+              background-color: #FFFFFF;
+            }
+            tr:nth-child(odd) {
+              background-color: #F9F9F9;
+            }
+            .weekend {
+              background-color: #FFCCCC !important;
+            }
+          </style>
+        </head>
+        <body dir="rtl">
+          <table>
+            <thead>
+              <tr>
+      <th>Person</th><th>Post</th><th>Personnel ID</th><th>Recruitment type</th><th>workingHourName</th><th>Date</th><th>Day</th><th>clock in 1</th><th>clock out 1</th><th>clock in 2</th><th>clock out 2</th><th>clock in 3</th><th>clock out 3</th><th>Ø¬ÙØ¹ Ø§Ø¶Ø§ÙÙ Ú©Ø§Ø±</th><th>Ø§Ø¶Ø§ÙÙ Ú©Ø§Ø±</th><th>ØºÛØ¨Øª Ø±ÙØ²Ø§ÙÙ</th><th>Ø§Ø¶Ø§ÙÙ Ú©Ø§Ø± Ø±ÙØ² ØªØ¹Ø·ÛÙ</th><th>Ø¯ÙØ±Ú©Ø§Ø±Û Ø±ÙØ²Ø§ÙÙ</th><th>Ø§Ø¶Ø§ÙÙ Ú©Ø§Ø± Ø¬ÙØ¹Ù</th><th>ÙØ¶Ø¹ÛØª Ø­Ø¶ÙØ±</th>
+              </tr>
+            </thead>
+            <tbody>
+      <tr><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td></tr>
+            </tbody>
+          </table>
+        </body>
+        </html>
+      

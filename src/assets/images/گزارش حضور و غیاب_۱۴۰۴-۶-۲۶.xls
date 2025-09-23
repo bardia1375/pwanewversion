@@ -1,0 +1,8 @@
+﻿<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8" />
+      <style>
+      table{border-collapse:collapse;font-family:Tahoma,Arial,sans-serif;direction:rtl}
+      th,td{border:1px solid #999;padding:4px;font-size:12px;text-align:center;white-space:nowrap}
+      th{background:#e6f7ff;font-weight:bold}
+      tr:nth-child(even){background:#fafafa}
+      .weekend{background:#ffcccc}
+      </style></head><body><table><thead><tr><th>Person</th><th>Personnel ID</th><th>Post</th><th>Recruitment type</th><th>Date</th><th>workingHourName</th><th>Day</th><th>clock in 1</th><th>clock out 1</th><th>clock in 2</th><th>clock out 2</th><th>clock in 3</th><th>clock out 3</th><th>Ø§Ø¶Ø§ÙÙ Ú©Ø§Ø± Ø±ÙØ² ØªØ¹Ø·ÛÙ</th><th>Ø§Ø¶Ø§ÙÙ Ú©Ø§Ø±</th><th>Ø§Ø¶Ø§ÙÙ Ú©Ø§Ø± Ø¬ÙØ¹Ù</th><th>ØºÛØ¨Øª Ø±ÙØ²Ø§ÙÙ</th><th>ÙØ¶Ø¹ÛØª Ø­Ø¶ÙØ±</th><th>Ø¬ÙØ¹ Ø§Ø¶Ø§ÙÙ Ú©Ø§Ø±</th><th>Ø¯ÙØ±Ú©Ø§Ø±Û Ø±ÙØ²Ø§ÙÙ</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></body></html>

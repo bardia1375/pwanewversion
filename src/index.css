@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@theme {
+  /* Define your custom colors here */
+  --color-primary: rgb(55, 179, 184);
+  --color-secondary: #ecfbfb; 
+  --color-text: #075985; /* آبی تیره */
+  --color-bg: #e7f4f9; /* آبی روشن */
+  --color-gray: #4b5563; /* خاکستری */
+  --color-cyan: #37B3B8; /* دکمه شناور */
+  --color-hover: #d4eef4; /*  هاور */
+}
+:root {
+  /* Font settings */
+  font-family: "Vazirmatn", system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
