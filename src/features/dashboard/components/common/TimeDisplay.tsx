@@ -9,3 +9,5 @@ export const TimeDisplay: React.FC = () => {
     </div>
   );
 };
+
+export default TimeDisplay;

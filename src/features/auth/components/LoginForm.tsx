@@ -2,8 +2,8 @@ import type { FC } from "react";
 import { useState } from "react";
 import type { LoginFormProps } from "../types";
 import { useAuthStore } from "../store/authStore";
-import { Button } from "../../../shared/components/ui/Button/Button";
 import { Input } from "../../../shared/components/ui/Input";
+import { Button } from "../../../shared/components/ui";
 
 export const LoginForm: FC<LoginFormProps> = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });

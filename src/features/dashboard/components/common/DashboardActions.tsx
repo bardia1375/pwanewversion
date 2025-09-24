@@ -1,15 +1,10 @@
 import React from "react";
-import { StoryModal } from "./Modal/StoryModal";
-import { Button } from "../../../shared/components/ui";
+import { StoryModal } from "../StoryModal";
+import { Button } from "../../../../shared/components/ui";
+import type { DashboardActionButtonProps } from "../../types";
 
-interface ActionButtonProps {
-  icon: React.ReactNode;
-  label: string;
-  isActive?: boolean;
-  onClick?: () => void;
-}
 
-const ActionButton: React.FC<ActionButtonProps> = ({
+const ActionButton: React.FC<DashboardActionButtonProps> = ({
   icon,
   label,
   isActive,
@@ -56,7 +51,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 );
 
 
-export const ActionButtons: React.FC = () => {
+export const DashboardActions: React.FC = () => {
   const [activeButton, setActiveButton] = React.useState<string>("missions");
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
@@ -150,3 +145,5 @@ export const ActionButtons: React.FC = () => {
     </>
   );
 };
+
+export default DashboardActions;

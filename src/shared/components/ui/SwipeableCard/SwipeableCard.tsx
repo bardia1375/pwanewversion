@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useId } from 'react';
-import { motion, useAnimation, useMotionValue } from 'framer-motion';
+import { motion, useAnimation, useMotionValue, type PanInfo } from 'framer-motion';
 import { cn } from '../../../utils';
 
 interface SwipeableCardProps {
@@ -46,7 +46,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
   }, [x, isOpen, showActionButtons]);
 
   // Handle drag action
-  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info) => {
+  const handleDrag = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     // Show action buttons even with small drag movements
     if (info.offset.x < -20 && !isOpen && showActionButtons) {
       setIsOpen(true);
@@ -58,7 +58,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
   };
 
   // Handle drag end
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info) => {
+  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     setIsDragging(false);
     
     // More sensitive threshold to reveal actions

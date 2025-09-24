@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import Contor24 from "../features/dashboard/components/Contor/Contor24";
-import { TabNavigation } from "../features/dashboard/components/TabNavigation";
-import { DateNavigation } from "../features/dashboard/components/DateNavigation";
-import { ActionButtons } from "../features/dashboard/components/ActionButtons";
-import { TimeDisplay } from "../features/dashboard/components/TimeDisplay";
-import { TimeDetails } from "../features/dashboard/components/TimeDetails";
+
+
 import Card from "../shared/components/ui/Card/Card";
+import { DashboardActions, DashboardTabs, DateNavigation, TimeDetails, TimeDisplay } from "../features/dashboard/components/common";
+import Contor24 from "../features/dashboard/components/Contor/Contor24";
 
 const DashboardPage: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -41,7 +39,7 @@ const DashboardPage: React.FC = () => {
     >
       {/* Navigation Section */}
       <div className="w-full sticky top-0 z-10 px-4 py-2">
-        <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
+        <DashboardTabs activeTab={activeTab} onTabChange={setActiveTab} />
         <DateNavigation />
       </div>
 
@@ -52,7 +50,7 @@ const DashboardPage: React.FC = () => {
 
       {/* Card Section */}
       <Card>
-        <ActionButtons />
+        <DashboardActions />
         <TimeDisplay />
         <TimeDetails
           isExpanded={isExpanded}

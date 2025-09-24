@@ -32,3 +32,5 @@ export const DateNavigation: React.FC = () => {
     </div>
   );
 };
+
+export default DateNavigation;

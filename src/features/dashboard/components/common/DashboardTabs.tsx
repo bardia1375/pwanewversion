@@ -1,12 +1,9 @@
 import React from 'react';
-import { Button } from "../../../shared/components/ui";
+import { Button } from "../../../../shared/components/ui";
+import type { DashboardTabNavigationProps } from '../../types';
 
-interface TabNavigationProps {
-  activeTab: "day" | "month";
-  onTabChange: (tab: "day" | "month") => void;
-}
 
-export const TabNavigation: React.FC<TabNavigationProps> = ({ activeTab, onTabChange }) => {
+export const TabNavigation: React.FC<DashboardTabNavigationProps> = ({ activeTab, onTabChange }) => {
   return (
     <div className="w-full max-w-md mx-auto bg-secondary rounded-full p-1 relative">
       {/* Animated Background Slider */}

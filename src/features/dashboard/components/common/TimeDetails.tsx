@@ -1,9 +1,7 @@
 import React from 'react';
+import type { TimeDetailsProps } from '../../types';
 
-interface TimeDetailsProps {
-  isExpanded: boolean;
-  onToggle: () => void;
-}
+
 
 export const TimeDetails: React.FC<TimeDetailsProps> = ({ isExpanded }) => {
   const timeEntries = [
@@ -42,3 +40,5 @@ export const TimeDetails: React.FC<TimeDetailsProps> = ({ isExpanded }) => {
     </div>
   );
 };
+
+export default TimeDetails;
