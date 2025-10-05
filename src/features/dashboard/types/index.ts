@@ -49,10 +49,13 @@ export interface ContentSectionProps {
   data: TabContent;
   loading: boolean;
   showButtons: boolean;
+  isExpanded: boolean;
   onDeleteLeave: (id: number) => void;
   onScroll: (e: React.UIEvent<HTMLDivElement>) => void;
   onAddNew: () => void;
   onViewDetails: () => void;
+  onExpandToggle: (expanded: boolean) => void;
+  onDragProgress?: (progress: number) => void;
 }
 
 export interface HeaderSectionProps {
@@ -60,6 +63,8 @@ export interface HeaderSectionProps {
   currentSlide: number;
   onTabChange: (index: number) => void;
   onClose: () => void;
+  isExpanded: boolean;
+  dragProgress?: number; // 0 = normal, 1 = fully expanded
 }
 
 // Modal TabNavigation (for slide-based tab switching)

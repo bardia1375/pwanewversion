@@ -17,6 +17,8 @@ export const StoryModal: React.FC<StoryModalProps> = ({
   const [currentSlide, setCurrentSlide] = useState(
     TABS.findIndex((tab) => tab.id === defaultTab)
   );
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [dragProgress, setDragProgress] = useState(0);
 
   // Custom hooks
   useBodyScrollLock(isOpen);
@@ -35,6 +37,14 @@ export const StoryModal: React.FC<StoryModalProps> = ({
 
   const handleViewDetails = () => {
     console.log("View details");
+  };
+
+  const handleExpandToggle = (expanded: boolean) => {
+    setIsExpanded(expanded);
+  };
+
+  const handleDragProgress = (progress: number) => {
+    setDragProgress(progress);
   };
 
   if (!isOpen) return null;
@@ -76,6 +86,8 @@ export const StoryModal: React.FC<StoryModalProps> = ({
               currentSlide={currentSlide}
               onTabChange={setCurrentSlide}
               onClose={onClose}
+              isExpanded={isExpanded}
+              dragProgress={dragProgress}
             />
 
             {/* Content Section */}
@@ -85,10 +97,13 @@ export const StoryModal: React.FC<StoryModalProps> = ({
               data={data}
               loading={loading}
               showButtons={showButtons}
+              isExpanded={isExpanded}
               onDeleteLeave={handleDeleteLeave}
               onScroll={handleScroll}
               onAddNew={handleAddNew}
               onViewDetails={handleViewDetails}
+              onExpandToggle={handleExpandToggle}
+              onDragProgress={handleDragProgress}
             />
           </motion.div>
         </motion.div>
