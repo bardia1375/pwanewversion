@@ -1,49 +1,52 @@
-import type { Mission } from '../types';
+import axiosInstance from "../../../api/axiosInstance";
 
-const mockMissions: Mission[] = [
-  {
-    id: 1,
-    title: 'بازدید از پروژه مترو',
-    location: 'تهران، ایستگاه مترو میدان آزادی',
-    startDate: '1402/06/01',
-    endDate: '1402/06/03',
-    status: 'approved',
-    description: 'بازدید از پیشرفت پروژه ساخت ایستگاه جدید مترو'
-  },
-  {
-    id: 2,
-    title: 'جلسه با پیمانکاران',
-    location: 'اصفهان، دفتر مرکزی',
-    startDate: '1402/06/15',
-    endDate: '1402/06/15',
-    status: 'pending',
-    description: 'بررسی وضعیت قراردادهای جدید و مذاکره با پیمانکاران'
-  },
-  {
-    id: 3,
-    title: 'بررسی سایت جدید',
-    location: 'شیراز، منطقه صنعتی',
-    startDate: '1402/07/01',
-    endDate: '1402/07/02',
-    status: 'pending',
-    description: 'بازدید از محل احداث کارخانه جدید و بررسی زیرساخت‌ها'
-  },
-  {
-    id: 4,
-    title: 'کنفرانس صنعت ساختمان',
-    location: 'تهران، مرکز همایش‌های بین‌المللی',
-    startDate: '1402/07/10',
-    endDate: '1402/07/12',
-    status: 'approved',
-    description: 'شرکت در کنفرانس سالانه صنعت ساختمان و ارائه مقاله'
-  }
-];
+export interface MissionValues {
+  date: string | null;
+  date_from: string;
+  date_to: string;
+  time_from: string | null;
+  time_to: string | null;
+  count: number | null;
+  date_food_meal: string | null;
+  date_food_meal_title: string | null;
+  pre_shift_id: number;
+  replace_shift_id: number;
+  person_id: number;
+  replace_person_id: number;
+  colleague_shift: string | null;
+  my_shift: string | null;
+}
 
-export const getMissions = async (): Promise<Mission[]> => {
-  // Simulating API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(mockMissions);
-    }, 1000);
-  });
+export interface MissionData {
+  id: number;
+  user_id: number;
+  position_id: number;
+  signature: string | null;
+  key: string;
+  registration_datetime: string;
+  type_id: number;
+  status: "accepted" | "rejected" | "pending";
+  values: MissionValues;
+  description: string | null;
+  date_from: string;
+  date_to: string;
+  time_from: string | null;
+  time_to: string | null;
+  created_at: string;
+  updated_at: string | null;
+  deleted_at: string | null;
+  type: Record<string, unknown> | null;
+  form: Record<string, unknown> | null;
+  requests: Record<string, unknown> | null;
+}
+
+export const getMissions = async (startDate?: string, endDate?: string): Promise<MissionData[]> => {
+  const today = new Date().toISOString().split('T')[0];
+  const start = startDate || today;
+  const end = endDate || today;
+
+  const { data } = await axiosInstance.get<MissionData[]>(
+    `/MobileApp/GetMyAssignment?StartDate=${start}&EndDate=${end}`
+  );
+  return data;
 };

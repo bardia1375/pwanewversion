@@ -8,6 +8,13 @@ export default defineConfig({
   server: {
     host: true, // Listen on all addresses
     port: 5173, // Default port
+    proxy: {
+      "/v1": {
+        target: "http://192.168.20.33:2222",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/v1/, "/v1"),
+      },
+    },
   },
   plugins: [
     tailwindcss(),

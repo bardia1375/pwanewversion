@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import type { Mission } from '../types';
 import SwipeableCard from '../../../shared/components/ui/SwipeableCard/SwipeableCard';
@@ -9,7 +8,7 @@ interface MissionCardProps {
   onCopy?: (mission: Mission) => void;
 }
 
-const MissionCard: React.FC<MissionCardProps> = ({ mission, onDelete, onCopy }) => {
+const MissionCard = ({ mission, onDelete, onCopy }: MissionCardProps) => {
   const handleDelete = () => {
     if (onDelete) {
       onDelete(mission.id);

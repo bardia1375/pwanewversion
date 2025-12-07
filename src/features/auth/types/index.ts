@@ -32,5 +32,5 @@ export interface User {
 
 export interface LoginResponse {
   user: User;
-  accessToken: string; // short-lived token
+  access_token: string; // short-lived token
 }

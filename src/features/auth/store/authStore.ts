@@ -43,13 +43,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
    
     
       
-      const { user, accessToken } = data;   
+      const { user, access_token } = data;   
       // const userApiData =await userApi() 
       //  console.log("userApiData",userApiData);
       // set token in memory and store
-      setAuthToken(accessToken);
-      set({ user, token: accessToken, isAuthenticated: true });
-      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      setAuthToken(access_token);
+      set({ user, token: access_token, isAuthenticated: true });
+      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
     } catch (err) {
       set({
         error: err instanceof Error ? err : new Error("Login failed"),
