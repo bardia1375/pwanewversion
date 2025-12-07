@@ -1,34 +1,44 @@
-import type { AuthCredentials, User } from '../types';
+import axios from "axios";
+import type { AuthCredentials, LoginResponse } from "../types";
+import axiosInstance from "../../../api/axiosInstance";
+import { setAuthToken } from "../../../utils/token";
 
-const BASE_URL = '/api/auth';
+const BASE_URL = "/api/auth";
 
-export async function login(credentials: AuthCredentials): Promise<User> {
-  const response = await fetch(`${BASE_URL}/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  });
-  if (!response.ok) {
-    throw new Error('Login failed');
-  }
-  return response.json();
-}
+export const loginApi = async (
+  payload: AuthCredentials,
+  callback:()=>void
+): Promise<LoginResponse> => {
+  const { data } = await axiosInstance.post<LoginResponse>("/login", payload);
+  callback() 
+  setAuthToken(data.access_token)
+  return data;
+};
+export const userApi = async (): Promise<{ accessToken: string }> => {
+  const { data } = await axiosInstance.get(
+    "user?includes%5B0%5D=profile.company&includes%5B1%5D=positions&includes%5B2%5D=taInfo&includes%5B3%5D=roles",
+    {}
+  );
 
-export async function logout(): Promise<void> {
-  const response = await fetch(`${BASE_URL}/logout`, {
-    method: 'POST',
-  });
-  if (!response.ok) {
-    throw new Error('Logout failed');
-  }
-}
+  return data;
+};
+export const refreshApi = async (): Promise<{ accessToken: string }> => {
+  const { data } = await axiosInstance.post("/auth/refresh", {});
+  return data;
+};
+export const logoutApi = async (): Promise<void> => {
+  await axiosInstance.post("/auth/logout", {}, { withCredentials: true });
+};
 
-export async function getCurrentUser(): Promise<User | null> {
-  const response = await fetch(`${BASE_URL}/me`);
-  if (!response.ok) {
-    return null;
-  }
-  return response.json();
-}
+// export async function getCurrentUser(): Promise<User | null> {
+//   const response = await fetch(`${BASE_URL}/me`);
+//   if (!response.ok) {
+//     return null;
+//   }
+//   return response.json();
+// }
+
+export const meApi = async () => {
+  const { data } = await axios.get(`${BASE_URL}/me`);
+  return data;
+};

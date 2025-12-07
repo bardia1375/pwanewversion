@@ -2,11 +2,12 @@
 // import DashboardPage from "./pages/DashboardPage";
 // import WelcomePage from "./pages/WelcomePage";
 
+import LoginPage from "./features/auth/pages/LoginPage";
+
 // import Dashboard from "./pages/Dashboard";
-import OverView from "./pages/OverView";
 
 function App() {
-  return <div><OverView /></div>;
+  return <div><LoginPage /></div>;
 }
 
 export default App;

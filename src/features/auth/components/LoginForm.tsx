@@ -2,11 +2,11 @@ import type { FC } from "react";
 import { useState } from "react";
 import type { LoginFormProps } from "../types";
 import { useAuthStore } from "../store/authStore";
-import { Input } from "../../../shared/components/ui/Input";
 import { Button } from "../../../shared/components/ui";
+import TextInput from "../../../shared/components/ui/Input";
 
 export const LoginForm: FC<LoginFormProps> = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const login = useAuthStore((s) => s.login);
   const isLoading = useAuthStore((s) => s.isLoading);
@@ -18,7 +18,7 @@ export const LoginForm: FC<LoginFormProps> = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await login(credentials.email, credentials.password);
+    await login(credentials.username, credentials.password);
   };
 
   return (
@@ -39,13 +39,13 @@ export const LoginForm: FC<LoginFormProps> = () => {
         </h2>
         {/* Divider */}
         <div className="w-full border-b-2 border-[#e0b96a] mb-2" />
-        {/* Email Input */}
-        <Input
-          type="email"
-          name="email"
+        {/* username Input */}
+        <TextInput
+          type="username"
+          name="username"
           autoComplete="username"
           placeholder="admin@admin.co"
-          value={credentials.email}
+          value={credentials.username}
           onChange={handleChange}
           size="md"
           rounded="full"
@@ -66,7 +66,7 @@ export const LoginForm: FC<LoginFormProps> = () => {
           }
         />
         {/* Password Input */}
-        <Input
+        <TextInput
           type={showPassword ? "text" : "password"}
           name="password"
           autoComplete="current-password"
